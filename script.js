@@ -606,11 +606,13 @@ const gameView = (() => {
 		if (presentMode === "computer") {
 			document.querySelector(".player1").style.display = "block";
 			document.querySelector(".player2").style.display = "none";
+			document.querySelector(".difficulty").style.display = "flex";
 
 			document.querySelector(".player2 model");
 		} else if (presentMode === "humans") {
 			document.querySelector(".player1").style.display = "block";
 			document.querySelector(".player2").style.display = "block";
+			document.querySelector('.difficulty').style.display='none';
 		}
 	};
 
