@@ -1,0 +1,441 @@
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Spline+Sans+Mono:wght@400;600;700&display=swap");
+
+html {
+	font-size: 62.5%;
+}
+*,
+*::after,
+*::before {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+/* GENERAL STYLES */
+body {
+	background-color: cadetblue;
+	color: #fff;
+	min-height: 95vh;
+	display: flex;
+	justify-content: center;
+	font-family: "Spline Sans Mono", monospace;
+	font-size: 1.7rem;
+}
+.btn {
+	outline: none;
+	border: none;
+	font: inherit;
+	color: inherit;
+	margin: 0 auto;
+	padding: 10px 25px;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-o-border-radius: 7px;
+}
+.btn:active {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+input {
+	margin-top: 1rem;
+	width: 100%;
+	font: inherit;
+	font-size: 1.6rem;
+	padding: 1.3rem 4rem;
+	border: none;
+	outline: none;
+	border-radius: 0.5rem;
+	-webkit-border-radius: 0.5rem;
+	-moz-border-radius: 0.5rem;
+	-ms-border-radius: 0.5rem;
+	-o-border-radius: 0.5rem;
+}
+input:focus {
+	outline: none;
+	box-shadow: cadetblue 0 0 0.5px 3px;
+}
+
+/* Center the game area */
+.game {
+	margin: 30px 0;
+}
+
+/* SCOREBOARD */
+.scoreboard {
+	margin-top: 1rem;
+	position: relative;
+	height: 8.5rem;
+}
+.scoreboard__expanded div {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+	margin-top: 3rem;
+}
+.scoreboard__expanded h2 {
+	font-size: 1.7rem;
+	text-align: center;
+}
+
+/* Add background for overflow */
+.scoreboard__background {
+	background-color: cadetblue;
+}
+.scoreboard__wrapper {
+	position: absolute;
+	padding: 10px 25px;
+	width: 100%;
+	height: 8.5rem;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-o-border-radius: 7px;
+}
+.scoreboard__players {
+	display: flex;
+	justify-content: space-evenly;
+	gap: 20px;
+	margin-bottom: 1rem;
+	font-weight: 600;
+	font-size: 1.8rem;
+}
+.scoreboard__players div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 5px;
+	width: 50rem;
+}
+/* player score */
+.scoreboard__players span {
+	color: #fefefe;
+	font-size: 2.5rem;
+	padding: 2px 9px;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+}
+/* Current player indicator */
+.scoreboard__players div::before {
+	content: "";
+	height: 3px;
+	width: 100%;
+	border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	-ms-border-radius: 10px;
+	-o-border-radius: 10px;
+}
+.scoreboard__player1::before,
+.scoreboard__player2::before {
+	background-color: rgba(255, 255, 255, 0.1);
+}
+.on::before {
+	background-color: hsl(182, 55%, 70%);
+	animation: blink 1.5s infinite;
+	-webkit-animation: blink 1.5s infinite;
+}
+
+/* UPDATE BANNER */
+.updates {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.4rem;
+	margin-top: 1rem;
+}
+.updates__text {
+	padding: 0.5rem 2rem;
+	padding-bottom: 0.5rem;
+	background-color: rgba(0, 0, 0, 0.2);
+	transition: background-color 1s ease;
+	border-radius: 1rem;
+	-webkit-border-radius: 1rem;
+	-moz-border-radius: 1rem;
+	-ms-border-radius: 1rem;
+	-o-border-radius: 1rem;
+}
+.updates__text span {
+	font-weight: bold;
+}
+
+/* GAME BOARD */
+.gameboard {
+	position: relative;
+	display: grid;
+	grid-template: repeat(3, 100px) / repeat(3, 100px);
+	margin: 4rem 2rem;
+	margin-top: 2rem;
+}
+.gameboard__cell {
+	border: rgba(0, 0, 0, 0.2) solid 3px;
+	color: #fff;
+	font-family: "Comic Neue", cursive;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 70px;
+	font-weight: 700;
+}
+/* Gameboard line arrangement */
+.gameboard__cell:nth-child(-n + 3) {
+	border-top: none;
+}
+.gameboard__cell:nth-child(3n) {
+	border-right: none;
+}
+.gameboard__cell:nth-child(n + 7) {
+	border-bottom: none;
+}
+.gameboard__cell:nth-child(3n-2) {
+	border-left: none;
+}
+
+/* OPTIONS AREA BUTTONS */
+.option {
+	display: flex;
+	justify-content: space-evenly;
+}
+.option div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 10rem;
+	height: 6rem;
+	background-color: rgba(0, 0, 0, 0.2);
+	border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-ms-border-radius: 7px;
+	-o-border-radius: 7px;
+}
+.option div:active {
+	background-color: rgba(0, 0, 0, 0.5);
+}
+/* player colors */
+.p1 {
+	color: #fff;
+}
+.p2 {
+	color: #333;
+}
+.colorize {
+	color: hsl(182, 70%, 90%);
+	font-weight: 600;
+}
+
+/* RESULT POPUP AREA */
+.result {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+.result__text {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	text-align: center;
+	background-color: rgb(95, 158, 160, 0.8);
+}
+.result__text--declare {
+	font-size: 2.2rem;
+	font-weight: 700;
+	color: #333;
+}
+.result__text--player {
+	font-size: 2rem;
+	font-weight: 700;
+}
+.result__text--sign {
+	font-family: "Comic Neue", cursive;
+
+	font-size: 12rem;
+	font-weight: 700;
+}
+
+/* SETTINGS AREA */
+.setting__btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	padding: 0.4rem 1.2rem;
+	margin-top: 0.5rem;
+	color: hsl(182, 95%, 89%);
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 0.7rem;
+	-webkit-border-radius: 0.7rem;
+	-moz-border-radius: 0.7rem;
+	-ms-border-radius: 0.7rem;
+	-o-border-radius: 0.7rem;
+}
+.setting__btn:active {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.modal {
+	display: none;
+	position: absolute;
+	top: 4rem;
+	height: 55rem;
+	width: 34rem;
+	z-index: 1;
+	background-color: rgb(95, 158, 160);
+}
+.showcase {
+	margin-top: 4.5rem;
+	gap: 3rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.2);
+
+	padding: 2rem 1rem;
+	padding-bottom: 2.5rem;
+	border-radius: 1rem;
+	-webkit-border-radius: 1rem;
+	-moz-border-radius: 1rem;
+	-ms-border-radius: 1rem;
+	-o-border-radius: 1rem;
+}
+.change-name {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 2.5rem;
+	padding: 2.2rem;
+}
+.change-name h3 {
+	margin-bottom: 2rem;
+}
+.btn-quit {
+	color: #fff;
+	margin-top: 3rem;
+	background-color: rgb(255, 99, 71, 0.8);
+}
+.btn-cancel {
+	outline: #333 2px solid;
+	width: 10rem;
+	padding-left: 0;
+	padding-right: 0;
+}
+.btn-okay,
+.btn-start {
+	outline: rgb(87, 166, 168) 2px solid;
+	width: 10rem;
+}
+.special-info {
+	font-size: 1.5rem;
+	position: absolute;
+	top: 1rem;
+	margin-left: 1rem;
+}
+
+/* INTRO AREA */
+.intro {
+	z-index: 100;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgb(95, 158, 160);
+}
+.intro__modal {
+	width: 35rem;
+	margin: 0 auto;
+	padding: 2rem;
+	height: 100%;
+}
+.into__container {
+	margin-top: 35%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+.intro h1 {
+	font-size: 3rem;
+	margin-bottom: 3rem;
+	text-align: center;
+}
+.intro p {
+	margin-bottom: 5rem;
+}
+.intro__input {
+	margin-bottom: 5rem;
+}
+.intro__input input {
+	padding: 1.5rem 4rem;
+}
+
+.intro input:focus {
+	outline: none;
+	box-shadow: rgb(111, 202, 204) 0 0 0.5px 3px;
+}
+.showcase__btn {
+	margin-top: 1.5rem;
+}
+
+/* ANIMATIONS */
+.winners {
+	animation: blink 0.35s step-start 0s 10;
+	-webkit-animation: blink 0.35s step-start 0s 10;
+	color: hsl(182, 95%, 60%);
+}
+.focus-in {
+	animation: focus-in 0.5s;
+	-webkit-animation: focus-in 0.5s;
+}
+.zoom-in {
+	animation: zoom-in 0.1s;
+	-webkit-animation: zoom-in 0.1s;
+}
+
+@keyframes blink {
+	50% {
+		opacity: 0;
+	}
+}
+@keyframes focus-in {
+	0% {
+		letter-spacing: 1em;
+	}
+}
+@keyframes zoom-in {
+	0% {
+		opacity: 0;
+		filter: blur(2px);
+		-webkit-filter: blur(2px);
+		transform: scale(1.2);
+		-webkit-transform: scale(1.2);
+		-moz-transform: scale(1.2);
+		-ms-transform: scale(1.2);
+		-o-transform: scale(1.2);
+	}
+	100% {
+		opacity: 1;
+		filter: blur(0px);
+		-webkit-filter: blur(0px);
+		transform: scale(1);
+		-moz-transform: scale(1);
+		-ms-transform: scale(1);
+		-o-transform: scale(1);
+		-webkit-transform: scale(1);
+	}
+}
