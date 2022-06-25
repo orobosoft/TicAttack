@@ -276,7 +276,38 @@ const gameBoard = (() => {
 
 	//COMPUTER LOGIC
 	const computerChoice = (newBoard, player) => {
-		if (Math.random() > 0.81) {
+		const select = document.getElementById("difficulty");
+		const value = select.options[select.selectedIndex].value;
+		const gameCount = aiModeTie + huPlayer.getScore() + aiPlayer.getScore();
+
+		// Difficulty levels
+		let percent;
+		switch (value) {
+			case "easy":
+				percent = 4;
+				break;
+			case "medium":
+				percent = 6;
+				break;
+			case "hard":
+				percent = 8;
+				break;
+			case "cumulative":
+				if (gameCount > 10) {
+					percent = 8;
+				} else if (gameCount > 5) {
+					percent = 6;
+				} else {
+					percent = 4;
+				}
+				break;
+			case "unbeatable":
+				percent = 10;
+				break;
+		}
+
+		// Computer choice
+		if (Math.floor(Math.random() * 10) + 1 > percent) {
 			choice = randomAi();
 		} else {
 			choice = minimaxAi(newBoard, player).index;
