@@ -148,9 +148,11 @@ const gameBoard = (() => {
 		board.splice(index, 1, currentPlayer.getSign());
 		element.classList.add(currentPlayer.addClass());
 		element.firstElementChild.classList.add("zoom-in");
-		click.play();
-		click.volume = 0.5;
-		click.currentTime = 0;
+		if (click) {
+			click.play();
+			click.volume = 0.5;
+			click.currentTime = 0;
+		}
 	};
 
 	const updateScore = () => {
@@ -210,9 +212,11 @@ const gameBoard = (() => {
 						gameView.displayResult("win", currentPlayer);
 						updateScore();
 						hasWinner = true;
-						roundOver.play();
-						roundOver.volume = 0.5;
-						roundOver.currentTime = 0;
+						if (roundOver) {
+							roundOver.play();
+							roundOver.volume = 0.5;
+							roundOver.currentTime = 0;
+						}
 					}
 					if (isTie()) {
 						if (presentMode === "computer") {
@@ -220,9 +224,11 @@ const gameBoard = (() => {
 						} else {
 							huModeTie++;
 						}
-						roundOver.play();
-						roundOver.volume = 0.5;
-						roundOver.currentTime = 0;
+						if (roundOver) {
+							roundOver.play();
+							roundOver.volume = 0.5;
+							roundOver.currentTime = 0;
+						}
 						gameView.displayResult("tie");
 					}
 					showBoard();
@@ -249,9 +255,11 @@ const gameBoard = (() => {
 					gameView.displayResult("win", currentPlayer);
 					updateScore();
 					hasWinner = true;
-					roundOver.play();
-					roundOver.volume = 0.5;
-					roundOver.currentTime = 0;
+					if (roundOver) {
+						roundOver.play();
+						roundOver.volume = 0.5;
+						roundOver.currentTime = 0;
+					}
 				}
 				if (isTie()) {
 					if (presentMode === "computer") {
@@ -260,9 +268,11 @@ const gameBoard = (() => {
 						huModeTie++;
 					}
 					gameView.displayResult("tie");
-					roundOver.play();
-					roundOver.volume = 0.5;
-					roundOver.currentTime = 0;
+					if (roundOver) {
+						roundOver.play();
+						roundOver.volume = 0.5;
+						roundOver.currentTime = 0;
+					}
 				}
 				showBoard();
 				changeCurrentPlayer();
@@ -392,9 +402,9 @@ const gameBoard = (() => {
 			gameOn.currentTime = 0;
 			toggle = 2;
 		} else if (toggle === 3) {
-			click = document.querySelector('audio[data-key="0"]');
+			click = null;
 			gameOn = document.querySelector("audio[data-key='2']");
-			roundOver = document.querySelector('audio[data-key="0"]');
+			roundOver = null;
 
 			gameOn.pause();
 			gameOn.currentTime = 0;
@@ -407,10 +417,12 @@ const gameBoard = (() => {
 			gameOn = document.querySelector("audio[data-key='2']");
 			roundOver = document.querySelector('audio[data-key="3"]');
 
-			gameOn.play();
-			gameOn.currentTime = 0.5;
-			gameOn.volume = 0.2;
-			gameOn.loop = true;
+			if (gameOn) {
+				gameOn.play();
+				gameOn.currentTime = 0.5;
+				gameOn.volume = 0.2;
+				gameOn.loop = true;
+			}
 			sound.firstElementChild.textContent = "volume_up";
 		}
 	};
@@ -612,7 +624,7 @@ const gameView = (() => {
 		} else if (presentMode === "humans") {
 			document.querySelector(".player1").style.display = "block";
 			document.querySelector(".player2").style.display = "block";
-			document.querySelector('.difficulty').style.display='none';
+			document.querySelector(".difficulty").style.display = "none";
 		}
 	};
 
